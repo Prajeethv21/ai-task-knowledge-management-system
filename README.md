@@ -111,32 +111,5 @@ python backend/init_db.py
 - [x] Analytics
 - [x] Simple React UI pages
 
-## Interview Prep Summary
-### Full Project Explanation
-This MVP provides a secure FastAPI backend and a React frontend for task management and knowledge search. Admins can upload text documents and assign tasks. Users can search those documents using local embeddings and update their task status. Activity logs and analytics help track usage and task progress.
-
-### Architecture Explanation
-- FastAPI handles API routes and business services.
-- SQLAlchemy manages persistence in MySQL.
-- FAISS stores embeddings locally for fast similarity search.
-- React provides a minimal UI with protected routes and token-based auth.
-
-### AI Search Explanation
-Documents are chunked into smaller pieces. Each chunk is embedded using `sentence-transformers`. The embeddings are indexed in FAISS, which enables fast similarity search. Queries are embedded at search time and matched to nearest chunks.
-
-### Scalability Discussion
-- Use a managed vector DB (e.g. Pinecone/Weaviate) when scaling.
-- Move background embedding to a job queue.
-- Add caching for frequent searches.
-
-### Tradeoffs
-- FAISS is local and fast but not distributed.
-- No background task queue in this MVP to keep complexity low.
-- Basic analytics derived from activity logs only.
-
-### Future Improvements
-- Add user management UI and registration.
-- Add document preview and chunk re-indexing.
-- Add audit views for activity logs.
 
 
