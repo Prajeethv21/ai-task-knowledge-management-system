@@ -14,7 +14,7 @@ An AI-assisted task and knowledge management system combining a FastAPI backend 
 
 ## Tech Stack
 - **Backend:** Python 3.10+ with FastAPI, Uvicorn
-- **ORM / Migrations:** SQLAlchemy 2.x, Alembic
+- **ORM / Migrations:**  Alembic
 - **Database:** MySQL (primary)
 - **Auth / Security:** JWT via python-jose
 - **Embeddings / Vector DB:** sentence-transformers (`all-MiniLM-L6-v2`) and FAISS (faiss-cpu)
@@ -90,58 +90,6 @@ frontend/
 - `POST /api/documents`
 - `POST /api/search`
 - `GET /api/analytics`
-
-## Features
-- JWT Authentication
-- Role-Based Access Control (RBAC)
-- Semantic Search (embeddings)
-- FAISS Vector Search
-- Task Assignment and Management
-- Analytics and Reporting
-- Activity Logging
-- Dynamic Filtering APIs
-
-## Requirement Checklist
-- [x] JWT auth + RBAC (Admin/User)
-- [x] MySQL schema with PK/FK and relations
-- [x] Document upload (.txt) + metadata
-- [x] Chunking + embeddings + FAISS indexing
-- [x] Semantic search endpoint
-- [x] Task management + filtering
-- [x] Activity logging
-- [x] Analytics
-- [x] Professional React frontend (Vite)
-
-## Default Demo Accounts
-
-### Admin
-Email: admin@example.com
-Password: admin123
-
-### User
-Email: user@example.com
-Password: user123
-
-## Future Improvements
-Examples:
-- PDF support and richer document formats (DOCX, HTML)
-- Docker-based deployment and orchestration (Docker Compose / Kubernetes)
-- Background embedding jobs (worker + queue) for asynchronous processing
-- Advanced analytics and reporting dashboards
-
-## Screenshots
-_Placeholder - add screenshots for the following views:_
-- Dashboard
-- Semantic Search
-- Task Management
-- Document Upload
-- Analytics
-
-## Contributing
-Contributions are welcome. Please open issues or pull requests and follow repository coding conventions. Ensure tests and linters pass before submitting a PR.
-
-## License
-This repository contains a prototype implementation. Add an appropriate open-source license file before public distribution.
 
 
 
