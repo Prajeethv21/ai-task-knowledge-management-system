@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { apiRequest, authHeaders } from "../services/api.js";
 import { useAuth } from "../context/AuthContext.jsx";
 
@@ -10,13 +11,26 @@ export default function UploadDocuments() {
   const [dragging, setDragging] = useState(false);
   const [progress, setProgress] = useState(0);
   const [deleteTarget, setDeleteTarget] = useState(null);
-  const { token } = useAuth();
+  const { token, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAuthError = (err) => {
+    if (err?.status === 401) {
+      logout();
+      navigate("/login", { replace: true });
+      return true;
+    }
+    return false;
+  };
 
   const loadDocuments = async () => {
     try {
       const data = await apiRequest("/documents", { headers: { ...authHeaders(token) } });
       setDocuments(data);
-    } catch {
+    } catch (err) {
+      if (handleAuthError(err)) {
+        return;
+      }
       setDocuments([]);
     }
   };
@@ -47,6 +61,9 @@ export default function UploadDocuments() {
       setTimeout(() => setProgress(0), 600);
       loadDocuments();
     } catch (err) {
+      if (handleAuthError(err)) {
+        return;
+      }
       setMessageType("error");
       setMessage(err.message);
       setProgress(0);
@@ -65,6 +82,9 @@ export default function UploadDocuments() {
       setDeleteTarget(null);
       loadDocuments();
     } catch (err) {
+      if (handleAuthError(err)) {
+        return;
+      }
       setMessageType("error");
       setMessage(err.message);
     }

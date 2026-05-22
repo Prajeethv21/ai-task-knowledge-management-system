@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     algorithm: str = "HS256"
 
     database_url: str = Field(
-        default="mysql+pymysql://root:root%20123@localhost:3306/ai_task_db",
+        default="mysql+pymysql://root:root123@localhost:3306/ai_task_db",
         alias="DATABASE_URL",
     )
     allow_sqlite_fallback: bool = Field(default=False, alias="ALLOW_SQLITE_FALLBACK")
