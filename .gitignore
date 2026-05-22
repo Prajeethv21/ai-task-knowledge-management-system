@@ -1,0 +1,72 @@
+.venv/
+.env
+node_modules/
+frontend/node_modules/
+**/__pycache__/
+**/*.pyc
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.cache
+.pytest_cache/
+.vscode/
+.DS_Store
+
+# Local environment / IDE
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Backend uploads and DB
+storage/uploads/
+storage/vectors/
+backend/storage/
+backend/*.db
+*.sqlite3
+
+# FAISS index files (may be large)
+storage/vectors/faiss.index
+storage/vectors/faiss.index.npy
+
+# Env files
+.env
+
+# npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Frontend build
+frontend/dist/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Coverage
+htmlcov/
+.coverage
+
+# PyCharm
+.idea/
+
+# Secrets
+secrets/
+
+# Ignore compiled assets
+*.lock
+
+# Ignore temporary files
+tmp/
+temp/
+
