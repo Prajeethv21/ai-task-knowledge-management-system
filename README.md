@@ -1,21 +1,21 @@
 # AI-Powered Task & Knowledge Management System (MVP)
 
 ## What Is Built
-This project is a full-stack MVP that provides:
-- JWT authentication with Admin/User roles
-- Task creation, assignment, filtering, and status updates
-- Document upload for .txt files with chunking + embeddings
-- Local semantic search using sentence-transformers + FAISS
-- Activity logging for login, task updates, document uploads, and search
-- Analytics for task stats and most searched queries
+This project is a full-stack application that provides:
+- JWT authentication with Admin and User roles
+- Task creation, assignment, dynamic filtering, and status management
+- Document ingestion for plain-text files with chunking and embeddings
+- Production-grade semantic search backed by FAISS vector similarity
+- Activity logging for user and system events
+- Analytics for task and search usage
  
 ## Short Explanation
-A lightweight AI-assisted task and knowledge management MVP combining a FastAPI backend and a React (Vite) frontend. Admins upload text documents which are chunked, embedded, and indexed locally for semantic search; users can create and manage tasks tied to that knowledge base.
+An AI-assisted task and knowledge management system combining a FastAPI backend and a React (Vite) frontend. Administrators can ingest documents which are chunked, embedded, and indexed for semantic search; users can create, filter, and manage tasks tied to the knowledge base.
 
 ## Tech Stack
 - **Backend:** Python 3.10+ with FastAPI, Uvicorn
 - **ORM / Migrations:** SQLAlchemy 2.x, Alembic
-- **Database:** MySQL (primary) with optional SQLite fallback for local dev
+- **Database:** MySQL (primary)
 - **Auth / Security:** JWT via python-jose
 - **Embeddings / Vector DB:** sentence-transformers (`all-MiniLM-L6-v2`) and FAISS (faiss-cpu)
 - **Frontend:** React, Vite, Axios
@@ -53,10 +53,8 @@ frontend/
 - Users can view their tasks and update their status.
 
 ## Frontend/Backend Connection
-- Frontend uses `VITE_API_BASE` to talk to the FastAPI backend.
-- The JWT is stored in localStorage and added to each request.
-- The frontend also supports a demo mode by default, so the UI can open even when no SQL data exists.
-- Set `VITE_DEMO_MODE=false` if you want the frontend to require a real backend login again.
+- Frontend uses `VITE_API_BASE` to communicate with the FastAPI backend.
+- Authentication is handled via JWTs; the frontend stores the access token client-side and attaches it to API requests.
 
 ## AI Workflow
 1. Admin uploads a .txt file.
@@ -67,21 +65,14 @@ frontend/
 ## Setup
 ### Backend
 1. Create a MySQL database (e.g. `ai_task_db`).
-2. Set `DATABASE_URL=mysql+pymysql://root:root%20123@localhost:3306/ai_task_db` in `.env`.
-3. If you need local-only fallback, set `ALLOW_SQLITE_FALLBACK=true`.
+2. Set `DATABASE_URL=mysql+pymysql://root:root123@localhost:3306/ai_task_db` in `.env`.
 4. Install Python dependencies:
    - `pip install -r backend/requirements.txt`
 5. Run Alembic migrations (preferred):
    - `cd backend`
    - `alembic upgrade head`
 
-   If you don't have a running MySQL instance or Alembic setup locally, you can use the provided init script which will create tables and seed a default admin user (falls back to SQLite if MySQL is unreachable):
-
-   - From repo root run:
-
-```bash
-python backend/init_db.py
-```
+   The repository includes `backend/init_db.py` to create database tables and seed default accounts when run directly. Use Alembic migrations for production environments.
 6. Start the API:
    - `uvicorn app.main:app --reload`
 
@@ -100,6 +91,16 @@ python backend/init_db.py
 - `POST /api/search`
 - `GET /api/analytics`
 
+## Features
+- JWT Authentication
+- Role-Based Access Control (RBAC)
+- Semantic Search (embeddings)
+- FAISS Vector Search
+- Task Assignment and Management
+- Analytics and Reporting
+- Activity Logging
+- Dynamic Filtering APIs
+
 ## Requirement Checklist
 - [x] JWT auth + RBAC (Admin/User)
 - [x] MySQL schema with PK/FK and relations
@@ -109,7 +110,38 @@ python backend/init_db.py
 - [x] Task management + filtering
 - [x] Activity logging
 - [x] Analytics
-- [x] Simple React UI pages
+- [x] Professional React frontend (Vite)
+
+## Default Demo Accounts
+
+### Admin
+Email: admin@example.com
+Password: admin123
+
+### User
+Email: user@example.com
+Password: user123
+
+## Future Improvements
+Examples:
+- PDF support and richer document formats (DOCX, HTML)
+- Docker-based deployment and orchestration (Docker Compose / Kubernetes)
+- Background embedding jobs (worker + queue) for asynchronous processing
+- Advanced analytics and reporting dashboards
+
+## Screenshots
+_Placeholder - add screenshots for the following views:_
+- Dashboard
+- Semantic Search
+- Task Management
+- Document Upload
+- Analytics
+
+## Contributing
+Contributions are welcome. Please open issues or pull requests and follow repository coding conventions. Ensure tests and linters pass before submitting a PR.
+
+## License
+This repository contains a prototype implementation. Add an appropriate open-source license file before public distribution.
 
 
 
