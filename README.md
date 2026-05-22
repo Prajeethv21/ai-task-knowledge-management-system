@@ -8,6 +8,18 @@ This project is a full-stack MVP that provides:
 - Local semantic search using sentence-transformers + FAISS
 - Activity logging for login, task updates, document uploads, and search
 - Analytics for task stats and most searched queries
+ 
+## Short Explanation
+A lightweight AI-assisted task and knowledge management MVP combining a FastAPI backend and a React (Vite) frontend. Admins upload text documents which are chunked, embedded, and indexed locally for semantic search; users can create and manage tasks tied to that knowledge base.
+
+## Tech Stack
+- **Backend:** Python 3.10+ with FastAPI, Uvicorn
+- **ORM / Migrations:** SQLAlchemy 2.x, Alembic
+- **Database:** MySQL (primary) with optional SQLite fallback for local dev
+- **Auth / Security:** JWT via python-jose
+- **Embeddings / Vector DB:** sentence-transformers (`all-MiniLM-L6-v2`) and FAISS (faiss-cpu)
+- **Frontend:** React, Vite, Axios
+- **Dev / Tooling:** Node.js / npm, pip
 
 ## Folder Structure
 ```
