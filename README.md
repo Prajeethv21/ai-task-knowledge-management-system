@@ -14,7 +14,7 @@ An AI-assisted task and knowledge management system combining a FastAPI backend 
 
 ## Tech Stack
 - **Backend:** Python 3.10+ with FastAPI, Uvicorn
-- **ORM / Migrations:**  Alembic
+- **Migrations:**  Alembic
 - **Database:** MySQL (primary)
 - **Auth / Security:** JWT via python-jose
 - **Embeddings / Vector DB:** sentence-transformers (`all-MiniLM-L6-v2`) and FAISS (faiss-cpu)
